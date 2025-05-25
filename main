@@ -1,0 +1,116 @@
+import math
+
+
+
+def mostraLinha():
+    print('-=-' * 30)
+
+
+
+def menu_principal():
+    mostraLinha()
+    print('Menu Principal')
+    mostraLinha()
+    print('1 - Cadastro de Produtos')
+    print('2 - Cadastro de Clientes')
+    print('3 - Novo Pedido')
+    print('4 - Lista de Clientes')
+    print('5 - Lista de Produtos')
+    print('6 - Sair')
+    mostraLinha()
+
+
+# listas globais
+menu_principal()
+produtos = ['Café', 'Café Expresso', 'Capuccino', ]
+precos = [3.0, 5.0, 7.0]
+mostraLinha()
+clientes = ['Marcela']
+cpf = ['000.111.222.333-44']
+telefones = [999667755]
+emails = ['falso.marcela@gmail.com']
+
+
+def cadastro_de_produtos():
+    pass
+    mostraLinha()
+    novo_produto = input('Digite aqui o novo produto:').lower()
+    if novo_produto in produtos:
+        print('Produto já cadastrado')
+    else:
+        novo_preco = float(input('Digite aqui o preço do produto R$:'))
+        produtos.append(novo_produto)
+        precos.append(novo_preco)
+        print('Produto e preço cadastrado com sucesso!')
+
+
+def cadastro_de_clientes():
+    mostraLinha()
+    novo_cliente = input('Digite aqui o novo cliente:').upper()
+    if novo_cliente in clientes:
+        print('Cliente já cadastrado!')
+        return
+    clientes.append(novo_cliente)
+    novo_cpf = input('Digite aqui o cpf do cliente:')
+    cpf.append(novo_cpf)
+    novo_telefone = input('Digite aqui o telefone:')
+    telefones.append(novo_telefone)
+    novo_email = input('Digite aqui o email:').lower()
+    emails.append(novo_email)
+    print(f'Cliente {novo_cliente} cadastrado com sucesso!')
+
+
+def novo_pedido():
+    mostraLinha()
+    identificar = input('Deseja identiicar o cliente? (S / N):').strip().lower()
+    if identificar == 's':
+        cliente_id = input('Digite aqui o id do cliente:')
+        if cliente_id in clientes:
+            print('Cliente encontrado! Proceguir sem identificação!')
+        else:
+            print(f'Cliente identificado: {cliente_id}')
+
+    item_pedido = input('Digite o nome do item a ser pedido: ')
+    quantidade_itens = int(input('Digite a quantidade de itens a ser pedida: '))
+    preco_unitario = float(input('Digite o preço unitário do item: R$ '))
+
+    valor_a_pagar = quantidade_itens * preco_unitario
+
+    print(f'Item: {item_pedido}')
+    print(f'Quantidade: {quantidade_itens}')
+    print(f'Preço unitário: R$ {preco_unitario:.2f}')
+    print(f'Valor total a pagar: R$ {valor_a_pagar:.2f}')
+
+
+def lista_de_clientes():
+    print('Lista de Clientes')
+    for c in clientes:
+        print(c)
+
+
+def lista_de_produtos():
+    print('Lista de Produtos')
+    for p in produtos:
+        print(p)
+
+while True:
+    opcao = input('Escolha uma opção: ')
+    if opcao == '1':
+        cadastro_de_produtos()
+    elif opcao == '2':
+        cadastro_de_clientes()
+    elif opcao == '3':
+        novo_pedido()
+    elif opcao == '4':
+        lista_de_clientes()
+        input('Pressione Enter para continuar...')
+    elif opcao == '5':
+        lista_de_produtos()
+        input('Pressione Enter para continuar...')
+    elif opcao == '6':
+        print('Saindo do sistema... Até logo!')
+
+    else:
+        print('Opção inválida. Tente novamente.')
+
+
